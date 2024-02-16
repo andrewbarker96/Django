@@ -14,12 +14,16 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-# mywebapp/urls.py
+# urls.py in your root Django project directory
+
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import include, path, re_path
+from django.views.generic import TemplateView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('myapp.urls')),
-]
 
+    # catch-all pattern to serve your index.html
+    re_path(r'^.*', TemplateView.as_view(template_name='myapp/index.html')),
+]

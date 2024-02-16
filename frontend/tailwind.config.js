@@ -1,0 +1,31 @@
+module.exports = {
+  purge: {
+    content: [
+      "frontend/src/pages/_document.js",
+      "frontend/src/pages/menu.tsx",
+      "frontend/src/pages/order-online.tsx",
+      "frontend/src/pages/waitlist.tsx",
+      "frontend/src/components/button.tsx",
+      "frontend/src/components/image-list.tsx",
+      "frontend/src/components/logo.tsx",
+      "frontend/src/components/reservation-form.tsx",
+      "frontend/src/components/home/HomeSlider.tsx",
+      "frontend/src/components/home/locations.tsx",
+      "frontend/src/components/menu/full-menu.tsx",
+      "frontend/src/components/menu/new-menu-items.tsx",
+      "frontend/src/components/navigation/footer.tsx",
+      "frontend/src/components/navigation/nav-items.tsx",
+      "frontend/src/components/navigation/top-nav.tsx",
+      "frontend/src/components/skeletons/content-skeleton.tsx",
+      "frontend/src/components/button.tsx",
+      "frontend/src/components/image-list.tsx",
+      "frontend/src/components/logo.tsx",
+      "frontend/src/components/reservation-form.tsx",
+      "frontend/src/pages/_document.js",
+      "frontend/src/pages/menu.tsx",
+      "frontend/src/pages/order-online.tsx",
+      "frontend/src/pages/waitlist.tsx",
+    ],
+  },
+  // ...
+};

@@ -4,6 +4,7 @@
 node_modules
 package.json
 package-lock.json
+secrets/
 /.pnp
 .pnp.js
 
