@@ -3,28 +3,33 @@ from rest_framework.decorators import api_view
 from rest_framework import status
 from django.shortcuts import render
 from django.http import HttpResponse
+from rest_framework import generics
+from .models import MyModel
+from .forms import MyForm
+from .serializers import MyModelSerializer
+from django.shortcuts import render
 
 
 def home(request):
-    return HttpResponse(
-        "<h1>Welcome to the Home Page</h1><a href='/about/'>About</a> | <a href='/contact/'>Contact</a>"
-    )
+    return render(request, "home.html")
 
 
 def about(request):
-    return HttpResponse(
-        "<h1>About Me</h1><a href='/'>Home</a> | <a href='/contact/'>Contact</a>"
-    )
+    return render(request, "about.html")
 
 
-@api_view(["GET", "POST"])
 def contact(request):
-    if request.method == "GET":
-        return Response(
-            {"message": "Contact Us", "links": {"home": "/", "about": "/about/"}}
-        )
-    elif request.method == "POST":
-        # Handle form submission logic here if needed
-        return Response(
-            {"message": "Form submitted successfully"}, status=status.HTTP_201_CREATED
+    return render(request, "contact.html")
+
+
+from .models import MyModel  # Import the MyModel class from the models module
+
+
+class MyModelListCreateView(generics.ListCreateAPIView):
+    queryset = MyModel.objects.all()
+    serializer_class = MyModelSerializer
+
+    def perform_create(self, serializer):
+        serializer.save(
+            field1=self.request.data["field1"], field2=self.request.data["field2"]
         )

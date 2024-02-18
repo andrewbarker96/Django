@@ -1,18 +1,49 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us</title>
+    <title>My Form</title>
 </head>
 <body>
-    <h1>Contact Us</h1>
-    <form method="post" action="">
-        <!-- Your form fields go here -->
-        {% csrf_token %}
-        <input type="submit" value="Submit">
+    <h1>About Us</h1>
+    <p>This is the About Us page.</p>
+    <p><a href="{% url 'home' %}">Home</a></p>
+    <p><a href="{% url 'about' %}">About Us</a></p>
+    <h1>My Form</h1>
+    <form id="myForm">
+        <label for="field1">Field 1:</label>
+        <input type="text" id="field1" name="field1" required>
+
+        <label for="field2">Field 2:</label>
+        <textarea id="field2" name="field2" required></textarea>
+
+        <button type="button" onclick="submitForm()">Submit</button>
     </form>
-    <br>
-    <a href="/">Home</a> | <a href="/about/">About</a>
+
+    <script>
+        function submitForm() {
+            const form = document.getElementById('myForm');
+            const formData = new FormData(form);
+
+            fetch('http://127.0.0.1:8000/api/mymodel/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(Object.fromEntries(formData)),
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Success:', data);
+                alert('Form submitted successfully!');
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            }); // Add a closing curly brace here
+        }
+    </script>
 </body>
 </html>
+   
